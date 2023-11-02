@@ -1,0 +1,15 @@
+openapi: 3.0.2
+info:
+  description: Backend service for REST API
+  version: '1.0'
+  title: Backend for Frontend API
+tags:
+  - name: Library API
+    description: Endpoints to interact with library data
+
+paths:
+# Library API
+  /profile/library-records:
+    get:
+      tags:
+        - Library API

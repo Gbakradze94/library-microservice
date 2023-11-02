@@ -1,9 +1,10 @@
-package com.space.elibrary.libraryservice.library.controller;
+package com.space.elibrary.libraryservice.library;
 
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.CreateLibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
-import jakarta.validation.Valid;
+import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import reactor.core.publisher.Mono;
+import jakarta.validation.Valid;
 
 @RequestMapping("/profile")
 @Tag(name = "Library API", description = "Actions that allow users to manage libraries")
@@ -29,7 +31,7 @@ public interface LibraryApi {
             summary = "GET library record by id"
     )
     @GetMapping("/library-records/{id}")
-    Mono<ResponseEntity<LibraryRecordListResponse>> fetchLibraryRecordById(@PathVariable(name = "id") String recordId);
+    Mono<ResponseEntity<LibraryRecordResponse>> fetchLibraryRecordById(@PathVariable(name = "id") String recordId);
 
     @PostMapping("/library-records")
     Mono<ResponseEntity<CreateLibraryRecordResponse>> createLibraryRecord(
@@ -37,7 +39,9 @@ public interface LibraryApi {
     );
 
     @PutMapping("/library-records/{id}")
-    Mono<Void> updateLibraryRecord(@PathVariable(name = "id") String recordId);
+    Mono<Void> updateLibraryRecord(@PathVariable(name = "id") String recordId,
+                                   @RequestBody UpdateLibraryRecordRequest updateLibraryRecordRequest
+    );
 
     @DeleteMapping("/library-records/{id}")
     Mono<ResponseEntity<Void>> deleteLibraryRecord(@PathVariable(name = "id") String recordId);

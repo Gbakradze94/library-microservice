@@ -1,10 +1,15 @@
 package com.space.elibrary.libraryservice.library.controller;
 
+import com.space.elibrary.libraryservice.library.LibraryApi;
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.CreateLibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
+import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.service.LibraryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.relational.core.sql.Update;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -22,22 +27,25 @@ public class LibraryController implements LibraryApi {
     }
 
     @Override
-    public Mono<ResponseEntity<LibraryRecordListResponse>> fetchLibraryRecordById(String recordId) {
-        return null;
+    public Mono<ResponseEntity<LibraryRecordResponse>> fetchLibraryRecordById(String recordId) {
+        return libraryService.fetchLibraryRecordById(recordId)
+                .map(ResponseEntity::ok);
     }
 
     @Override
     public Mono<ResponseEntity<CreateLibraryRecordResponse>> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
-        return null;
+        return libraryService.createLibraryRecord(createRecordRequest)
+                .map(response -> new ResponseEntity<>(response, HttpStatus.CREATED));
     }
 
     @Override
-    public Mono<Void> updateLibraryRecord(String recordId) {
-        return null;
+    public Mono<Void> updateLibraryRecord(String recordId, UpdateLibraryRecordRequest updateLibraryRecordRequest) {
+       return libraryService.updateLibraryRecord(recordId, updateLibraryRecordRequest);
     }
 
     @Override
     public Mono<ResponseEntity<Void>> deleteLibraryRecord(String recordId) {
-        return null;
+        return libraryService.deleteLibraryRecord(recordId)
+                .map(ResponseEntity::ok);
     }
 }

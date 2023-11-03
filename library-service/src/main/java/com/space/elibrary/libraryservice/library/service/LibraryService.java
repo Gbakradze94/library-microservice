@@ -2,6 +2,7 @@ package com.space.elibrary.libraryservice.library.service;
 
 import com.space.elibrary.libraryservice.library.domain.LibraryRecord;
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.LibraryRecordCreatedResponse;
 import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
@@ -41,11 +42,11 @@ public class LibraryService {
         return libraryRepository.deleteById(recordId);
     }
 
-    public Mono<LibraryRecordResponse> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
+    public Mono<LibraryRecordCreatedResponse> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
         LibraryRecord libraryRecord =
                 libraryRecordMapper.mapRecordRequestToLibraryRecord(createRecordRequest);
         return libraryRepository.save(libraryRecord)
-                .map(savedLibraryRecord -> LibraryRecordResponse.builder()
+                .map(savedLibraryRecord -> LibraryRecordCreatedResponse.builder()
                         .recordId(libraryRecord.recordId())
                         .build()
                 );

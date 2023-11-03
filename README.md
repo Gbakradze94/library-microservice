@@ -29,3 +29,11 @@ $  Secrets are provided as plain text only for demo purposes. In production secr
 2. Provide local database admin and password.
 3. Run the application
 4. Access Swagger documentation at: [http://localhost:8081/openapi/webjars/swagger-ui/index.html]()
+
+### Issues:
+<br/>
+<span style="color:red">
+1. When sending multiple POST requests with same body, entities with duplicated key are created.
+Needs to be fixed. <br/>
+2. Due to time constraints the user-service and Feign reactive are not ready yet.
+</span>

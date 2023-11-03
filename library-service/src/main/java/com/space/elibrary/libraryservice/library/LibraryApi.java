@@ -1,6 +1,7 @@
 package com.space.elibrary.libraryservice.library;
 
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.LibraryRecordCreatedResponse;
 import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
@@ -74,7 +75,7 @@ public interface LibraryApi {
             description = "A POST request to create new library record"
     )
     @PostMapping("/library-records")
-    Mono<ResponseEntity<LibraryRecordResponse>> createLibraryRecord(
+    Mono<ResponseEntity<LibraryRecordCreatedResponse>> createLibraryRecord(
             @Valid @RequestBody CreateLibraryRecordRequest createRecordRequest
     );
 

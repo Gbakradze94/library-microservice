@@ -44,6 +44,6 @@ public class LibraryController implements LibraryApi {
     @Override
     public Mono<ResponseEntity<Void>> deleteLibraryRecord(String recordId) {
         return libraryService.deleteLibraryRecord(recordId)
-                .map(ResponseEntity::ok);
+                .map(response -> new ResponseEntity<>(response, HttpStatus.NO_CONTENT));
     }
 }

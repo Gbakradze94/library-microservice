@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface LibraryRecordMapper {
     @Mapping(target = "recordId", source = "recordId")
-    LibraryRecordResponse libraryRecordEntityToResponse(LibraryRecord libraryRecord);
+    LibraryRecordResponse mapLibraryRecordEntityToResponse(LibraryRecord libraryRecord);
 
     @Mapping(target = "recordId", source = "recordId")
     LibraryRecord mapRecordRequestToLibraryRecord(CreateLibraryRecordRequest libraryRecord);

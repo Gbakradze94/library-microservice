@@ -2,7 +2,6 @@ package com.space.elibrary.libraryservice.library;
 
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
-import com.space.elibrary.libraryservice.library.interfaces.response.CreateLibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,7 +33,7 @@ public interface LibraryApi {
     Mono<ResponseEntity<LibraryRecordResponse>> fetchLibraryRecordById(@PathVariable(name = "id") String recordId);
 
     @PostMapping("/library-records")
-    Mono<ResponseEntity<CreateLibraryRecordResponse>> createLibraryRecord(
+    Mono<ResponseEntity<LibraryRecordResponse>> createLibraryRecord(
             @Valid @RequestBody CreateLibraryRecordRequest createRecordRequest
     );
 

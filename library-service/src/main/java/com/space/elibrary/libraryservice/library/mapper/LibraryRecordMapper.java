@@ -12,7 +12,6 @@ public interface LibraryRecordMapper {
     @Mapping(target = "recordId", source = "recordId")
     LibraryRecordResponse libraryRecordEntityToResponse(LibraryRecord libraryRecord);
 
-    // fixme: recordId cannot be passed. R2DBC exception
     @Mapping(target = "recordId", source = "recordId")
     LibraryRecord mapRecordRequestToLibraryRecord(CreateLibraryRecordRequest libraryRecord);
 

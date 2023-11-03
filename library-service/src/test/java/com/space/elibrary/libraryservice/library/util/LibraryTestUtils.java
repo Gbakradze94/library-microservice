@@ -1,6 +1,7 @@
 package com.space.elibrary.libraryservice.library.util;
 
 import com.space.elibrary.libraryservice.library.domain.LibraryRecord;
+import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import lombok.experimental.UtilityClass;
@@ -11,9 +12,9 @@ import java.util.List;
 @UtilityClass
 public class LibraryTestUtils {
     public static final String RECORD_ID = "1234567890";
-    private static final String FORMAT = "Hardcover";
-    private static final String TITLE = "The Shining";
-    private static final String AUTHOR = "Stephen King";
+    public static final String FORMAT = "Hardcover";
+    public static final String TITLE = "The Shining";
+    public static final String AUTHOR = "Stephen King";
 
 
     public static LibraryRecordListResponse buildLibraryRecordListResponse() {
@@ -41,8 +42,17 @@ public class LibraryTestUtils {
         return Flux.fromIterable(List.of(buildLibraryRecord()));
     }
 
-    private static LibraryRecord buildLibraryRecord() {
+    public static LibraryRecord buildLibraryRecord() {
         return LibraryRecord.builder()
+                .recordId(RECORD_ID)
+                .author(AUTHOR)
+                .title(TITLE)
+                .format(FORMAT)
+                .build();
+    }
+
+    public static CreateLibraryRecordRequest buildCreateLibraryRecordRequest() {
+        return CreateLibraryRecordRequest.builder()
                 .recordId(RECORD_ID)
                 .author(AUTHOR)
                 .title(TITLE)

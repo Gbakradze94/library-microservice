@@ -19,7 +19,8 @@ $ git clone https://github.com/Gbakradze94/library-microservice.git
 
 # To run locally you need to create PostgreSQL database called 'libraryservicedb' and replace 
 # datasource properties in application.yml
-$ 
+$  Secrets are provided as plain text only for demo purposes. In production secrets will not be stored <br/>
+ as plaintext and pushed to repository using yaml file.
 
 ```
 

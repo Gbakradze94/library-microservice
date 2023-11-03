@@ -2,6 +2,7 @@ package com.space.elibrary.libraryservice.library.util;
 
 import com.space.elibrary.libraryservice.library.domain.LibraryRecord;
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import lombok.experimental.UtilityClass;
@@ -53,6 +54,15 @@ public class LibraryTestUtils {
 
     public static CreateLibraryRecordRequest buildCreateLibraryRecordRequest() {
         return CreateLibraryRecordRequest.builder()
+                .recordId(RECORD_ID)
+                .author(AUTHOR)
+                .title(TITLE)
+                .format(FORMAT)
+                .build();
+    }
+
+    public static UpdateLibraryRecordRequest buildUpdateLibraryRequest() {
+        return UpdateLibraryRecordRequest.builder()
                 .recordId(RECORD_ID)
                 .author(AUTHOR)
                 .title(TITLE)

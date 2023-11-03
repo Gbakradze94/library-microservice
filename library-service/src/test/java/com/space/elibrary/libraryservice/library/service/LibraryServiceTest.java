@@ -1,18 +1,16 @@
 package com.space.elibrary.libraryservice.library.service;
 
-import com.space.elibrary.libraryservice.library.domain.LibraryRecord;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.mapper.LibraryRecordMapper;
 import com.space.elibrary.libraryservice.library.repository.LibraryRepository;
 import com.space.elibrary.libraryservice.library.util.LibraryTestUtils;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
+import org.mockito.InjectMocks;
 import reactor.test.StepVerifier;
-
+import org.mockito.Mock;
 import java.util.List;
 
 import static com.space.elibrary.libraryservice.library.util.LibraryTestUtils.RECORD_ID;
@@ -38,7 +36,7 @@ class LibraryServiceTest {
 
     @Test
     void whenFetchLibraryRecords_shouldReturnLibraryRecordListResponse() {
-        when(libraryRecordMapper.libraryRecordEntityToResponse(any()))
+        when(libraryRecordMapper.mapLibraryRecordEntityToResponse(any()))
                 .thenReturn(LibraryTestUtils.buildLibraryRecordResponse());
 
         when(libraryRepository.findAll())
@@ -59,7 +57,7 @@ class LibraryServiceTest {
 
     @Test
     void whenFetchLibraryRecordById_shouldReturnLibraryRecordResponse() {
-        when(libraryRecordMapper.libraryRecordEntityToResponse(any()))
+        when(libraryRecordMapper.mapLibraryRecordEntityToResponse(any()))
                 .thenReturn(LibraryTestUtils.buildLibraryRecordResponse());
 
         when(libraryRepository.findById(anyString()))
@@ -89,6 +87,18 @@ class LibraryServiceTest {
                 .verifyComplete();
 
         verify(libraryRepository).save(buildLibraryRecord());
+        verifyNoMoreInteractions(libraryRepository);
+    }
+
+    @Test
+    void whenDeleteLibraryRecord_shouldDeleteLibraryRecord() {
+        when(libraryRepository.deleteById(anyString()))
+                .thenReturn(Mono.empty());
+
+        StepVerifier.create(libraryService.deleteLibraryRecord(RECORD_ID))
+                .verifyComplete();
+
+        verify(libraryRepository).deleteById(RECORD_ID);
         verifyNoMoreInteractions(libraryRepository);
     }
 }

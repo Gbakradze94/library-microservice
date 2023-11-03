@@ -8,12 +8,10 @@ import com.space.elibrary.libraryservice.library.interfaces.response.LibraryReco
 import com.space.elibrary.libraryservice.library.mapper.LibraryRecordMapper;
 import com.space.elibrary.libraryservice.library.repository.LibraryRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LibraryService {
@@ -25,7 +23,7 @@ public class LibraryService {
         return libraryRepository.findAll()
                 .collectList()
                 .map(libraryRecordsList -> libraryRecordsList.stream()
-                        .map(libraryRecordMapper::libraryRecordEntityToResponse)
+                        .map(libraryRecordMapper::mapLibraryRecordEntityToResponse)
                         .toList()
                 )
                 .map(libraryRecordResponse -> LibraryRecordListResponse.builder()
@@ -36,7 +34,7 @@ public class LibraryService {
 
     public Mono<LibraryRecordResponse> fetchLibraryRecordById(String recordId) {
         return libraryRepository.findById(recordId)
-                .map(libraryRecordMapper::libraryRecordEntityToResponse);
+                .map(libraryRecordMapper::mapLibraryRecordEntityToResponse);
     }
 
     public Mono<Void> deleteLibraryRecord(String recordId) {
@@ -53,8 +51,7 @@ public class LibraryService {
                 );
     }
 
-    public Mono<Void> updateLibraryRecord(String recordId,
-                                          UpdateLibraryRecordRequest updateRequest) {
+    public Mono<Void> updateLibraryRecord(String recordId, UpdateLibraryRecordRequest updateRequest) {
         return libraryRepository.findById(recordId)
                 .flatMap(libraryRecordResponse -> libraryRepository
                         .save(libraryRecordMapper.mapRequestToLibraryRecord(updateRequest)))

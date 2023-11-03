@@ -81,6 +81,6 @@ class LibraryControllerIT {
                 .uri("/profile/library-records/{id}", RECORD_ID)
                 .exchange()
                 .expectStatus()
-                .isOk();
+                .isNoContent();
     }
 }

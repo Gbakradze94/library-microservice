@@ -3,12 +3,10 @@ package com.space.elibrary.libraryservice.library.controller;
 import com.space.elibrary.libraryservice.library.LibraryApi;
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
-import com.space.elibrary.libraryservice.library.interfaces.response.CreateLibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
 import com.space.elibrary.libraryservice.library.service.LibraryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.relational.core.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +31,7 @@ public class LibraryController implements LibraryApi {
     }
 
     @Override
-    public Mono<ResponseEntity<CreateLibraryRecordResponse>> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
+    public Mono<ResponseEntity<LibraryRecordResponse>> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
         return libraryService.createLibraryRecord(createRecordRequest)
                 .map(response -> new ResponseEntity<>(response, HttpStatus.CREATED));
     }

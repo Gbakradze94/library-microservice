@@ -2,6 +2,7 @@ package com.space.elibrary.libraryservice.library.controller;
 
 import com.space.elibrary.libraryservice.library.LibraryApi;
 import com.space.elibrary.libraryservice.library.interfaces.request.CreateLibraryRecordRequest;
+import com.space.elibrary.libraryservice.library.interfaces.request.LibraryRecordCreatedResponse;
 import com.space.elibrary.libraryservice.library.interfaces.request.UpdateLibraryRecordRequest;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordListResponse;
 import com.space.elibrary.libraryservice.library.interfaces.response.LibraryRecordResponse;
@@ -31,7 +32,7 @@ public class LibraryController implements LibraryApi {
     }
 
     @Override
-    public Mono<ResponseEntity<LibraryRecordResponse>> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
+    public Mono<ResponseEntity<LibraryRecordCreatedResponse>> createLibraryRecord(CreateLibraryRecordRequest createRecordRequest) {
         return libraryService.createLibraryRecord(createRecordRequest)
                 .map(response -> new ResponseEntity<>(response, HttpStatus.CREATED));
     }

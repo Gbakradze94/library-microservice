@@ -19,7 +19,8 @@ $ git clone https://github.com/Gbakradze94/library-microservice.git
 
 # To run locally you need to create PostgreSQL database called 'libraryservicedb' and replace 
 # datasource properties in application.yml
-$ 
+$  Secrets are provided as plain text only for demo purposes. In production secrets will not be stored <br/>
+ as plaintext and pushed to repository using yaml file.
 
 ```
 
@@ -28,3 +29,11 @@ $
 2. Provide local database admin and password.
 3. Run the application
 4. Access Swagger documentation at: [http://localhost:8081/openapi/webjars/swagger-ui/index.html]()
+
+### Issues:
+<br/>
+<span style="color:red">
+1. When sending multiple POST requests with same body, entities with duplicated key are created.
+Needs to be fixed. <br/>
+2. Due to time constraints the user-service and Feign reactive are not ready yet.
+</span>
